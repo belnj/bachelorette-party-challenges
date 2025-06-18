@@ -17,9 +17,14 @@
     color: #333;
   }
   h1 {
-    margin-bottom: 30px;
+    margin-bottom: 0.5rem;
     font-weight: 700;
     font-size: 1.6rem;
+  }
+  h6 {
+    margin: 0;
+    margin-bottom: 2rem;
+    color: #666;
   }
   .tarjetas {
     display: grid;
@@ -62,7 +67,7 @@
     font-size: 1.3rem;
     min-height: 90px;
     box-shadow: 0 6px 12px rgba(255, 132, 0, 0.3);
-    color: #bf4600;
+    color: #7f2f00;
     margin: 0 auto;
     max-width: 460px;
   }
@@ -179,12 +184,17 @@
   };
 
   function mostrarPrueba(categoria) {
-    document.getElementById('prueba').style.display = 'none';
+    const prueba = document.getElementById('prueba');
+    prueba.style.display = 'none'; // Oculta primero
+    
     const lista = pruebas[categoria];
     const aleatoria = lista[Math.floor(Math.random() * lista.length)];
     
-    document.getElementById('prueba').textContent = aleatoria;
-    document.getElementById('prueba').style.display = 'block';
+    prueba.textContent = aleatoria;
+    
+    prueba.style.display = 'flex';
+    prueba.style.justifyContent = 'center';
+    prueba.style.alignItems = 'center';
   }
 
   document.querySelectorAll('.tarjeta').forEach(el => {
