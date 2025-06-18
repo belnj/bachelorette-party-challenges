@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pruebas Despedida Ali</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff7f0;
+    margin: 0;
+    padding: 20px 15px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #333;
+  }
+  h1 {
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+  .tarjetas {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas siempre */
+    gap: 18px;
+    margin-bottom: 30px;
+  }
+  .tarjeta {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 6px 14px rgba(255, 132, 0, 0.3);
+    padding: 25px 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    user-select: none;
+    color: #ff6500;
+    font-weight: 600;
+    font-size: 1.15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tarjeta:hover,
+  .tarjeta:focus {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(255, 132, 0, 0.5);
+    outline: none;
+  }
+  .descripcion {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 8px;
+    line-height: 1.3;
+  }
+  #prueba {
+    background: #ffebd6;
+    border-radius: 12px;
+    padding: 25px 20px;
+    font-size: 1.3rem;
+    min-height: 90px;
+    box-shadow: 0 6px 12px rgba(255, 132, 0, 0.3);
+    color: #bf4600;
+    margin: 0 auto;
+    max-width: 460px;
+  }
+  @media (max-width: 400px) {
+    .tarjetas {
+      grid-template-columns: 1fr 1fr; /* sigue dos columnas */
+      gap: 12px;
+    }
+    #prueba {
+      max-width: 100%;
+      padding: 20px 15px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>Elige tu prueba</h1>
+
+<div class="tarjetas">
+  <div class="tarjeta" onclick="mostrarPrueba('picante')" tabindex="0" role="button" aria-pressed="false">
+    🔥 Picante y Atrevido
+    <div class="descripcion">Retos subidos de tono para que la novia lo de todo.</div>
+  </div>
+  <div class="tarjeta" onclick="mostrarPrueba('show')" tabindex="0" role="button" aria-pressed="false">
+    🎤 Show y Locura
+    <div class="descripcion">Que la novia cante, baile y sorprenda a todos.</div>
+  </div>
+  <div class="tarjeta" onclick="mostrarPrueba('equipo')" tabindex="0" role="button" aria-pressed="false">
+    🤝 Haz Equipo
+    <div class="descripcion">Que la novie juege con otros...  Ten cuidado esa persona puedes ser tú.</div>
+  </div>
+  <div class="tarjeta" onclick="mostrarPrueba('brindis')" tabindex="0" role="button" aria-pressed="false">
+    🍻 Brindis y Tragos
+    <div class="descripcion">¡Que la novia siga la fiesta! Bebe, brinda y celebra sin parar.</div>
+  </div>
+</div>
+
+<!-- <h2>Tu prueba:</h2> -->
+<p id="prueba" style="display: none;">Selecciona una categoría para ver la prueba</p>
+
+<script>
+  const pruebas = {
+    picante: [
+      "Consigue el número de teléfono de 3 chicos.",
+      "Dale un beso en la frente a un chico",
+      "Escribe con pintalabios en la frente de alguien “Team novia”.",
+      "Intercambia una prenda con alguien.",
+      "Hazte una selfie con un camarero/a guapo/a y dile que es para Tinder.",
+      "Haz que alguien te escriba un poema improvisado.",
+      "Haz que alguien te rapee.",
+      "Encuentra a alguien con el mismo nombre que el futuro marido.",
+      "Durante 5 minutos, cada vez que alguien diga tu nombre, ladra.",
+      "Dale un abrazo a un extraño.",
+      "Hacer un serio con un extraño.",
+      "Di piropos a tres desconocidos distintos.",
+      "Imita el acento argentino mientras ligas con alguien.",
+      "Haz una lista de las 3 personas más guapas del local y díselo.",
+      "Busca a alguien con tatuajes y pídele que te enseñe el más raro.",
+      "Pide a alguien que grite contigo: “¡Viva la novia!”.",
+      "Hazte 3 fotos con sombreros, gafas u otros complementos absurdos.",
+      "Hazte una foto abrazando a alguien que lleve algo rosa.",
+    ],
+    show: [
+      "Baila una canción con un desconocido.",
+      "Canta una canción en medio del bar.",
+      "Haz un TikTok viral con al menos 2 personas aleatorias.",
+      "Interpreta una peli sin hablar, que otros la adivinen.",
+      "Haz una coreografía en grupo como si fuerais una boyband.",
+      "Ve al baño caminando como si fueras una top model.",
+      "Haz una mini entrevista en la calle estilo reportera: “¿Qué opinas del amor verdadero?”",
+      "Escoge a alguien e interpreta una peli sin hablar, tienen que adivinarla.",
+      "Habla con acento mexicano durante 10 minutos.",
+      "Imitad a un famoso durante 5 minutos.",
+      "Llama a alguien fingiendo que es tu ex.",
+      "Haz que 3 persona canten contigo a modo karaoke una canción",
+      "Montad una coreografía grupal tipo TikTok con extraños.",
+    ],
+    equipo: [
+      "Haz una conga en el bar con al menos 5 personas.",
+      "Consigue que alguien te cante una canción romántica.",
+      "Consigue que dos personas que no se conocen se den un abrazo.",
+      "Recoge 5 consejos sobre el amor de personas distintas.",
+      "Haz que alguien te enseñe una palabra en otro idioma y úsala en 3 frases.",
+      "Hazte una selfie con un grupo que no conozcas.",
+      "Escoge a alguien y dile de hacer 10 sentadillas juntos.",
+      "Haz 3 flexiones con quien ha escaneado el QR",
+      "Hazte una foto con alguien disfrazado o que lo parezca.",
+      "Forma una pareja improvisada y haced una historia de amor en 1 minuto.",
+      "Reta a alguien a piedra-papel-tijera: si pierdes, tú bebes; si ganas, ellos.",
+      "Pídele a alguien que te traduzca “te quiero” en su idioma.",
+      "Pídele a alguien que actúe como tu pareja durante 3 minutos.",
+      "Haz un brindis sexy con quien ha escaneado el QR",
+      "Reta a quien te ha escaneado el qr a un pulso, el que pierde invita a un chupito",
+      "Intercambia una prenda con quien escaneó el QR.",
+      "Bebe con esa persona un trago cruzado (los brazos entrelazados)",
+      "Haz una mini coreografía con quien escaneo el QR",
+      "Juega a “verdad o reto” con quien escaneó el QR: tú empiezas",
+      "Juega a “verdad o reto” con quien escaneó el QR: tú empiezas",
+    ],
+    brindis: [
+      "Bebe un chupito sin usar las manos.",
+      "Haz un brindis en voz alta por el amor... ¡y bebe!",
+      "Bebe un trago cada vez que veas a alguien con algo blanco.",
+      "Brinda con 3 personas y haced un grito de guerra al brindar.",
+      "Pide que te inviten a una bebida.",
+      "Reta a alguien a un hidalgo (quién bebe más rápido todo el vaso).",
+      "Bebe con la mano contraria durante 5 minutos, si no bebe un chupito",
+      "Brindad todos diciendo una frase absurda al unísono.",
+      "Bebe y di tres verdades y una mentira: que adivinen cuál es.",
+      "Haz que un desconocido te enseñe su brindis favorito.",
+      "Pide a alguien una bebida con una condición graciosa: “pero con acento francés”"
+    ]
+  };
+
+  function mostrarPrueba(categoria) {
+    document.getElementById('prueba').style.display = 'none';
+    const lista = pruebas[categoria];
+    const aleatoria = lista[Math.floor(Math.random() * lista.length)];
+    
+    document.getElementById('prueba').textContent = aleatoria;
+    document.getElementById('prueba').style.display = 'block';
+  }
+
+  document.querySelectorAll('.tarjeta').forEach(el => {
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        el.click();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
